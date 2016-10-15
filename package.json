@@ -1,0 +1,24 @@
+{
+  "name": "hyperscale",
+  "version": "0.0.1",
+  "description": "hyper scaling websocket server",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "start": "caddy",
+    "build:proxy": "go build -o ./bin/proxy proxy/src/hello.go",
+    "build:hosts": "go build -o ./bin/hosts hosts/src/host.go",
+    "build": "npm run build:proxy; npm run build:hosts"
+  },
+  "keywords": [
+    "websocket",
+    "scaling",
+    "scale",
+    "go",
+    "caddy"
+  ],
+  "author": "Tung Vu <me@tungv.com>",
+  "license": "MIT"
+}

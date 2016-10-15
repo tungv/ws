@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<title>Hello</title>
+<body>
+  <input type="text">
+  <ul>
+  </ul>
+  <script type="text/javascript">
+    const input = document.querySelector('input');
+    const ul = document.querySelector('ul');
+
+    const socket = new WebSocket('ws://localhost:2020/ws/');
+    const logMessage = (data) => {
+      console.info('incoming: ', data);
+      const li = document.createElement('li');
+      li.textContent = data;
+      ul.appendChild(li);
+    };
+
+    // socket.onopen = () => socket.send('hello from client');
+    socket.onmessage = event => logMessage(event.data);
+
+    input.onchange = () => {
+      socket.send(input.value);
+      input.value = '';
+    }
+  </script>
+</body>
