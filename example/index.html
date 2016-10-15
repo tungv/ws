@@ -9,7 +9,7 @@
     const ul = document.querySelector('ul');
 
     const socket = new WebSocket('ws://localhost:2020/ws/');
-    const logMessage = (data) => {
+    const consume = (data) => {
       console.info('incoming: ', data);
       const li = document.createElement('li');
       li.textContent = data;
@@ -17,7 +17,7 @@
     };
 
     // socket.onopen = () => socket.send('hello from client');
-    socket.onmessage = event => logMessage(event.data);
+    socket.onmessage = event => consume(event.data);
 
     input.onchange = () => {
       socket.send(input.value);

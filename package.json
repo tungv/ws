@@ -7,6 +7,7 @@
     "example": "example"
   },
   "scripts": {
+    "test": "jest",
     "start": "caddy",
     "build:proxy": "go build -o ./bin/proxy proxy/src/hello.go",
     "build:hosts": "go build -o ./bin/hosts hosts/src/host.go",
@@ -20,5 +21,16 @@
     "caddy"
   ],
   "author": "Tung Vu <me@tungv.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "redux": "^3.6.0",
+    "redux-actions": "^0.12.0",
+    "redux-logger": "^2.7.0",
+    "redux-node-logger": "0.0.3",
+    "rx-node": "^1.0.2",
+    "uuid": "^2.0.3"
+  },
+  "devDependencies": {
+    "jest": "^16.0.1"
+  }
 }
