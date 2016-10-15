@@ -14,6 +14,10 @@
       const li = document.createElement('li');
       li.textContent = data;
       ul.appendChild(li);
+
+      if (ul.childElementCount > 10) {
+        ul.removeChild(ul.firstElementChild)
+      }
     };
 
     // socket.onopen = () => socket.send('hello from client');

@@ -11,7 +11,7 @@ const __DEV__ = process.env.NODE_ENV !== 'production'
 const removeNewLines = str => str.split('\n').join('')
 
 const writeJSON = (socket, msg) => {
-  socket.write(JSON.stringify(msg))
+  socket.write(JSON.stringify(msg) + '\n')
 }
 
 module.exports = (port) => {

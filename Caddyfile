@@ -2,5 +2,5 @@ localhost:2020 {
   log log/access.log
   root example/
 
-  websocket /ws proxy/bin/hello; cat
+  websocket /ws bin/proxy
 }

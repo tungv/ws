@@ -3,19 +3,24 @@ package main
 import (
   "fmt"
   "bufio"
+  "net"
   "os"
 )
 
 func main() {
     fmt.Printf("hello, world\n")
     reader := bufio.NewReader(os.Stdin)
-    fmt.Println("Enter username: ")
-    text, _ := reader.ReadString('\n')
-    fmt.Print("welcome, " + text)
+    topic, _ := reader.ReadString('\n')
+    fmt.Print("subscribing: " + topic)
 
-    sum := 1;
-    for sum < 10 {
-      text, _ := reader.ReadString('\n')
-      fmt.Print(text)
+    conn, _ := net.Dial("tcp", "127.0.0.1:9000")
+    fmt.Fprintf(conn, "SUB:" + topic)
+
+    responseReader := bufio.NewReader(conn)
+
+    for {
+      message, _ := responseReader.ReadString('\n')
+      fmt.Print(message)
     }
+
 }
