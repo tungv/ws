@@ -1,6 +1,6 @@
 const __DEV__ = process.env.NODE_ENV !== 'production'
 
-module.exports = (socketsMap) => {
+module.exports = (socketStreamsMap) => {
   const clientsMap = new Map
 
   const subscribe = (userId, socketId) => {
@@ -50,18 +50,16 @@ module.exports = (socketsMap) => {
     let sent = 0
     for (const socketId of userSockets) {
       debugger
-      const socket = socketsMap.get(socketId)
-      if (!socket) {
-        socketsMap.delete(socketId)
+      const messages$ = socketStreamsMap.get(socketId)
+      if (!messages$) {
+        socketStreamsMap.delete(socketId)
         continue
       }
 
-      socket.write(message + '\n')
+      messages$.onNext(message)
       ++totalSent
       ++sent
     }
-
-    console.log('message sent to %d clients', sent)
 
     return sent
   }
